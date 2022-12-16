@@ -6,7 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  Test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo This is a test
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build -t personal-website .
+        docker tag personal-website docker.pkg.github.com/sconvent/personal-website/personal-website:latest
+    #- name: Push the Docker image
+    #  run: |
+    #    docker login docker.pkg.github.com -u <USERNAME> -p <TOKEN>
+    #    docker push docker.pkg.github.com/<OWNER>/<REPO>/myimage:latest

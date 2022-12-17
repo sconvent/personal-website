@@ -20,3 +20,15 @@ jobs:
       run: |
         docker login ghcr.io/ -u sconvent -p ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }}
         docker push ghcr.io/sconvent/personal-website/personal-website:latest
+    - uses: actions/setup-ssh@v1
+      with:
+        ssh_key: ${{ secrets.SSH_PRIVATE_KEY_DOCKERUSER }}
+    - name: Add server host key to known_hosts
+      run: ssh-keyscan -H convent.dev >> ~/.ssh/known_hosts
+    - name: Connect to server via SSH
+      run: ssh dockeruser@convent.dev
+    - name: Test connection
+      run: |
+        docker ps
+        echo hostname:
+        hostname

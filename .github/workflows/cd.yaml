@@ -29,9 +29,4 @@ jobs:
     - name: Add server host key to known_hosts
       run: ssh-keyscan -H convent.dev >> ~/.ssh/known_hosts
     - name: Connect to server via SSH
-      run: ssh dockeruser@convent.dev
-    - name: Test connection
-      run: |
-        docker ps
-        echo hostname:
-        hostname
+      run: ssh -t dockeruser@convent.dev "docker ps && hostname"

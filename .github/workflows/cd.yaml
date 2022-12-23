@@ -29,4 +29,4 @@ jobs:
     - name: Add server host key to known_hosts
       run: ssh-keyscan -H convent.dev >> ~/.ssh/known_hosts
     - name: Connect to server via SSH
-      run: ssh -t dockeruser@convent.dev "cd ./personal-website && git pull && cd ./deployment && echo ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }} | docker login ghcr.io -u sconvent --password-stdin && docker-compose pull docker-compose up -d"
+      run: ssh -t dockeruser@convent.dev "cd ./personal-website && git pull && cd ./deployment && echo ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }} | docker login ghcr.io -u sconvent --password-stdin && docker-compose pull && docker-compose up -d"

@@ -1,6 +1,6 @@
 version: '3'
 services:
   website:
-    image: dhcr.io/sconvent/personal-website/personal-website:latest
+    image: ghcr.io/sconvent/personal-website/personal-website:latest
     ports:
       - 80:80
